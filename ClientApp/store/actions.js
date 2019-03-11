@@ -27,7 +27,14 @@ export const actions = {
 
   async getAllTodos ({ commit }) {
     // TODO: get the users to-do items
-    commit('loadTodos', [{ text: 'Fake todo item' }]);
+
+    // How does this know to go to localhost:5000 etc ?
+    let response = await axios.get('/api/todo');
+
+    if (response && response.data) {
+      let updatedTodos = response.data;
+      commit('loadTodos', updatedTodos);
+    }
   },
 
   async addTodo ({ dispatch }, data) {

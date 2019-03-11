@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Vue2Spa.Providers;
+using Vue2Spa.Services;
 
 namespace todolist_aspcore
 {
@@ -24,7 +26,8 @@ namespace todolist_aspcore
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Simple example with dependency injection for a data provider.
-            services.AddSingleton<Providers.IWeatherProvider, Providers.WeatherProviderFake>();
+            //This makes the FakeTodoItemService available throughout the project.
+            services.AddSingleton<ITodoItemService, FakeTodoItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
