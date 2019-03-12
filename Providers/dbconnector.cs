@@ -5,11 +5,9 @@ using MongoDB.Driver;
 
 namespace Vue2Spa.Providers
 {
-    public class dbconnector
+    public abstract class dbconnector
     {
         private readonly IConfiguration configuration;
-        // Exposing these to the class, just in case - TODO: refactor
-        private readonly MongoClient client;
         private readonly IMongoDatabase db;
 
         /// <summary>
@@ -22,7 +20,7 @@ namespace Vue2Spa.Providers
             // Create a connection to the server
             configuration = config.GetSection("MongoSettings");
 
-            client = new MongoClient(configuration.GetSection("ConnectionString").Value);
+            MongoClient client = new MongoClient(configuration.GetSection("ConnectionString").Value);
             db = client.GetDatabase(configuration.GetSection("db").Value);
         }
 
@@ -31,10 +29,21 @@ namespace Vue2Spa.Providers
         /// Test method to insert a document to the mongodb
         /// </summary>
         /// <param name="obj"></param>
-        public void InsertDocument(BsonDocument doc) 
+        public void InsertDocument(BsonDocument doc)
         {
             var collection = db.GetCollection<BsonDocument>(configuration.GetSection("collection").Value);
             collection.InsertOne(doc);
+        }
+
+        public BsonDocument CreateTodoItem(string text)
+        {
+            // Refactor
+            var doc = new BsonDocument();
+            doc.Add(new BsonElement("Text", text));
+            doc.Add(new BsonElement("Complete", false));
+            doc.Add(new BsonElement("Guid", Guid.NewGuid()));
+            
+            return doc;
         }
     }
 }

@@ -8,11 +8,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace Vue2Spa.Services
 {
-    public class FakeTodoItemService : ITodoItemService
+    public class FakeTodoItemService : dbconnector, ITodoItemService
     {
         private readonly IConfiguration configuration;
 
-        public FakeTodoItemService(IConfiguration config)
+        public FakeTodoItemService(IConfiguration config): base(config)
         {
             configuration = config;
         }
@@ -30,7 +30,11 @@ namespace Vue2Spa.Services
 
         public Task AddItem(string userId, string text)
         {
-            throw new NotImplementedException();
+            var doc = CreateTodoItem(text);
+            InsertDocument(doc);
+
+            //Read up on what to actually return here
+            return new Task(() => { Console.WriteLine("Done");});
         }
 
         public Task DeleteItem(string userId, Guid id)

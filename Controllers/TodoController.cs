@@ -34,4 +34,25 @@ namespace Vue2Spa.Controllers
             return Ok(todos);
         }
     }
+
+    [Route("api/[controller]")]
+    public class NewNoteController: Controller
+    {
+        private readonly ITodoItemService _todoItemService;
+
+        public NewNoteController(ITodoItemService todoItemService)
+        {
+            _todoItemService = todoItemService;
+        }
+
+        /// <summary>
+        /// Will eventually be a post with the text for the todo and the user id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public void AddItem()
+        {
+            _todoItemService.AddItem("123", "This is a random note!");
+        }
+    }
 }
