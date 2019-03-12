@@ -1,9 +1,9 @@
 {
-  "name": "aspnetcore-vuejs",
-  "description": "ASP.NET Core & VueJS Starter project",
-  "author": "Mark Pieszak",
+  "name": "TODO App",
+  "description": "TODO App",
+  "author": "Michael Da Costa",
   "repository": {
-    "url": "https://github.com/MarkPieszak/aspnetcore-Vue-starter"
+    "url": ""
   },
   "license": "MIT",
   "scripts": {
