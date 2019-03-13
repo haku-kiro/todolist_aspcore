@@ -11,7 +11,7 @@ namespace Vue2Spa.Services
     public class FakeTodoItemService : dbconnector, ITodoItemService
     {
         private readonly IConfiguration configuration;
-
+        
         public FakeTodoItemService(IConfiguration config): base(config)
         {
             configuration = config;
