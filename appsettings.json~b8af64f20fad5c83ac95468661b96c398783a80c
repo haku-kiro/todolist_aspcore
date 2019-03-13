@@ -1,0 +1,14 @@
+{
+  "ConnectionStrings": {},
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "MongoSettings": {
+    "ConnectionString": "<wtf gitignore>",
+    "db": "todo-data",
+    "collection": "todo-collection",
+    "random": "Note that the string above has creds in it - find a better way. Also, add this file to your .gitignore"
+  }
+}
